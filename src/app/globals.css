@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0A0A0B;
+    --bg2: #0D0D0F;
+    --panel: #0B0B0D;
+    --line: rgba(237, 234, 227, 0.11);
+    --line2: rgba(237, 234, 227, 0.05);
+    --ink: #EDEAE3;
+    --mut: #9A968C;
+    --dim: #5E5B52;
+    --acc: #FF9E1B;
+    --acc-dim: rgba(255, 158, 27, 0.14);
+    --ok: #55C97C;
+    --bad: #FF5449;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .cut-corner {
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
 }
+
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse { 50% { opacity: 0.25; } }
+
+.animate-blink { animation: blink 1s infinite; }
+.animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
