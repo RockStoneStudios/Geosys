@@ -35,7 +35,7 @@ export function FieldCasesSection() {
             {/* Aspect Ratio con designer.png */}
             <div className="relative w-full h-[280px] sm:h-[360px] bg-neutral-900 overflow-hidden">
               <Image
-                src="/designer.png"
+                src="/Designer.png"
                 alt="Perfilamiento Comercial y Inteligencia Territorial"
                 fill
                 priority

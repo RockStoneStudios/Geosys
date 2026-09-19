@@ -284,7 +284,7 @@ export function HeroSection() {
                       d="M 220 180 Q 380 120, 680 180 T 780 450 T 720 780 T 400 780 T 200 600 Z"
                       fill="rgba(255,255,255,0.008)"
                       stroke="rgba(237,234,227,0.22)"
-                      strokeWidth="2.5"
+                      strokeWidth="2.2"
                     />
 
                     {/* Red de vías / Río Cauca conectando los municipios */}
@@ -292,8 +292,8 @@ export function HeroSection() {
                       d="M 270 220 L 330 270 L 380 330 L 440 410 L 510 430 L 550 560 L 610 590 L 650 640 L 680 710"
                       fill="none"
                       stroke="rgba(237,234,227,0.35)"
-                      strokeDasharray="5 5"
-                      strokeWidth="1.9"
+                      strokeDasharray="6 5"
+                      strokeWidth="2.9"
                     />
 
                     <circle cx={cx} cy={cy} r={220} fill="none" stroke="rgba(237,234,227,0.08)" strokeDasharray="4 5" />
