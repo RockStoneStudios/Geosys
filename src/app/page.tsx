@@ -4,15 +4,17 @@ import { TacticalVisor } from '@/components/sections/TacticalVisor';
 import { PlatformAccordion } from '@/components/sections/PlatformAccordion';
 import MetricsBar from '@/components/sections/MetricsBar';
 import WorkflowSection from '@/components/sections/WorkflowSection';
+import FieldCasesSection from '@/components/sections/FieldCasesSection';
 
 export default function Home(): ReactNode {
   return (
     <>
       <HeroSection />
       <MetricsBar/>
-      <TacticalVisor />
+      {/* <TacticalVisor /> */}
       <PlatformAccordion />
       <WorkflowSection/>
+      <FieldCasesSection/>
     </>
   );
 }

@@ -15,6 +15,7 @@ interface EventoTerritorial {
   cy: number;
 }
 
+// 13 municipios del Occidente Antioqueño con coordenadas proporcionales compactas
 const EVENTOS_INICIALES: EventoTerritorial[] = [
   {
     id: '1',
@@ -24,8 +25,8 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'DEFORESTACIÓN NUEVA',
     detalle: '2.6 HA REMOVIDAS',
     subtexto: 'CONF 0.94',
-    cx: 480,
-    cy: 230
+    cx: 590,
+    cy: 270
   },
   {
     id: '2',
@@ -35,8 +36,8 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'PICO DE TURBIDEZ +36 NTU',
     detalle: 'SENSOR CAUCA-4',
     subtexto: 'CONF 0.90',
-    cx: 500,
-    cy: 440
+    cx: 550,
+    cy: 560
   },
   {
     id: '3',
@@ -46,8 +47,8 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'AFECTACIÓN VIAL DETECTADA',
     detalle: 'TROCHA LA HOZ · BORDA INESTABLE',
     subtexto: 'CONF 0.84',
-    cx: 600,
-    cy: 540
+    cx: 650,
+    cy: 640
   },
   {
     id: '4',
@@ -57,8 +58,8 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'VIGOR DE CULTIVO ACTUALIZADO',
     detalle: 'NDVI 0.66 · LOTE LA ESMERALDA',
     subtexto: 'MONITOREO SATELITAL',
-    cx: 560,
-    cy: 490
+    cx: 610,
+    cy: 590
   },
   {
     id: '5',
@@ -68,28 +69,40 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'MONITOREO DE CAUDAL',
     detalle: '+0.4 M / 6H · ESTACIÓN CAUCA-4',
     subtexto: 'UMBRAL EN VIGILANCIA',
-    cx: 480,
-    cy: 340
+    cx: 580,
+    cy: 390
+  },
+  {
+    id: '6',
+    tiempo: '0:02:45',
+    categoria: 'MIN',
+    municipio: 'BURITICÁ',
+    titulo: 'ACTIVIDAD MINERA DETECTADA',
+    detalle: 'ZONA NORTE · SECTOR HIGABRA',
+    subtexto: 'CONF 0.92',
+    cx: 510,
+    cy: 350
+  },
+  {
+    id: '7',
+    tiempo: '0:01:10',
+    categoria: 'VÍA',
+    municipio: 'CAÑASGORDAS',
+    titulo: 'ALERTA VIAL PASO REAL',
+    detalle: 'TÚNEL DEL TOYO · ACCESO OESTE',
+    subtexto: 'MONITOREO VIAL',
+    cx: 380,
+    cy: 320
   }
 ];
 
 const NODOS_SECUNDARIOS = [
-  { nombre: 'DABEIBA', cx: 120, cy: 190 },
-  { nombre: 'URAMITA', cx: 190, cy: 220 },
-  { nombre: 'PEQUE', cx: 280, cy: 210 },
-  { nombre: 'FRONTINO', cx: 250, cy: 250 },
-  { nombre: 'CAÑASGORDAS', cx: 270, cy: 290 },
-  { nombre: 'BURITICÁ', cx: 410, cy: 300 },
-  { nombre: 'GIROBA - RÍO', cx: 330, cy: 320 },
-  { nombre: 'GIRALDO', cx: 370, cy: 370 },
-  { nombre: 'OLAYA', cx: 470, cy: 400 },
-  { nombre: 'URRAO', cx: 270, cy: 500 },
-  { nombre: 'SALGAR', cx: 330, cy: 650 },
-  { nombre: 'CIUDAD BOLÍVAR', cx: 330, cy: 720 },
-  { nombre: 'BETANIA', cx: 310, cy: 860 },
-  { nombre: 'VENECIA', cx: 390, cy: 800 },
-  { nombre: 'HISPANIA', cx: 370, cy: 870 },
-  { nombre: 'ANDES', cx: 420, cy: 850 }
+  { nombre: 'DABEIBA', cx: 270, cy: 220 },
+  { nombre: 'URAMITA', cx: 330, cy: 270 },
+  { nombre: 'GIRALDO', cx: 420, cy: 410 },
+  { nombre: 'FRONTINO', cx: 370, cy: 450 },
+  { nombre: 'OLAYA', cx: 570, cy: 470 },
+  { nombre: 'EBÉJICO', cx: 590, cy: 710 }
 ];
 
 export function HeroSection() {
@@ -132,7 +145,7 @@ export function HeroSection() {
 
   const cx = 500;
   const cy = 460;
-  const radius = 460;
+  const radius = 380;
   const sweepAngle = 45;
 
   const startRad = (0 * Math.PI) / 180;
@@ -146,22 +159,18 @@ export function HeroSection() {
 
   return (
     <section className="relative w-full pt-8 pb-16 bg-[#0A0A0B] border-b border-[rgba(237,234,227,0.11)] overflow-hidden">
-      {/* Retícula de fondo */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(237,234,227,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(237,234,227,0.03)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
       <div className="max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* GRILLA PRINCIPAL: Sistema de 24 columnas */}
         <div className="grid grid-cols-1 lg:grid-cols-24 gap-8 items-start">
           
-          {/* COLUMNA IZQUIERDA: 11 / 24 columnas (Equivalente exacto a 5.5 / 12) */}
+          {/* COLUMNA IZQUIERDA */}
           <div className="lg:col-span-11 flex flex-col gap-4">
             <div className="flex items-center gap-3 font-mono text-[11px] tracking-[0.16em] uppercase text-[#9A968C]">
               <span className="w-8 h-px bg-[#FF9E1B]" />
               <span>GEOSYS <span className="text-[#FF9E1B]">//</span> PLATAFORMA DE INTELIGENCIA TERRITORIAL – V4.2</span>
             </div>
 
-            {/* TÍTULO */}
             <h1 className="text-5xl sm:text-6xl lg:text-6xl xl:text-[3.9rem] font-black uppercase tracking-tighter text-[#EDEAE3] leading-[0.96] font-sans">
               EL SISTEMA <br />
               OPERATIVO <br />
@@ -178,12 +187,10 @@ export function HeroSection() {
               ANTIOQUEÑO.
             </h1>
 
-            {/* PÁRRAFO */}
             <p className="text-base text-[#9A968C] max-w-lg leading-relaxed font-normal">
               Visión artificial entrenada en terreno, ingesta satelital masiva y analítica en tiempo real. Una sola plataforma para ver, entender y decidir sobre el territorio — desde el río Cauca hasta el Páramo del Sol.
             </p>
 
-            {/* BOTONES */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="#acceso"
@@ -205,12 +212,12 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-[rgba(237,234,227,0.11)] font-mono text-[10.5px] tracking-[0.1em] text-[#5E5B52]">
-              <span>SOPETRAN <b className="text-[#9A968C] font-normal">6.5506°N · 75.8281°W</b></span>
+              <span>SOPETRÁN <b className="text-[#9A968C] font-normal">6.5506°N · 75.8281°W</b></span>
               <span>ELEV <b className="text-[#9A968C] font-normal">550 MSNM</b></span>
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: 13 / 24 columnas (Equivalente exacto a 6.5 / 12) */}
+          {/* COLUMNA DERECHA */}
           <div className="lg:col-span-13 w-full">
             <div className="relative border border-[rgba(237,234,227,0.11)] bg-[#0B0B0D]">
               <span className="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-[#FF9E1B] pointer-events-none" />
@@ -218,7 +225,6 @@ export function HeroSection() {
               <span className="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-[#FF9E1B] pointer-events-none" />
               <span className="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-[#FF9E1B] pointer-events-none" />
 
-              {/* Header Superior */}
               <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 py-2.5 border-b border-[rgba(237,234,227,0.11)] font-mono text-[10.5px] tracking-[0.1em] text-[#9A968C]">
                 <div className="flex items-center gap-2 text-[#EDEAE3]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FF9E1B] animate-pulse" />
@@ -241,10 +247,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* GRID INTERNO: Radar vs Lista */}
               <div className="grid grid-cols-1 md:grid-cols-12 min-h-[440px]">
-                
-                {/* RADAR CON MAPA */}
                 <div className="md:col-span-8 border-b md:border-b-0 md:border-r border-[rgba(237,234,227,0.11)] relative flex items-center justify-center bg-[#070708] overflow-hidden p-3 min-h-[420px]">
                   <svg
                     id="map"
@@ -259,7 +262,7 @@ export function HeroSection() {
                       </radialGradient>
                     </defs>
 
-                    <g stroke="rgba(237,234,227,0.04)" strokeWidth="1.2">
+                    <g stroke="rgba(237,234,227,0.04)" strokeWidth="1.5">
                       <line x1="0" y1="180" x2="1000" y2="180" />
                       <line x1="0" y1="360" x2="1000" y2="360" />
                       <line x1="0" y1="540" x2="1000" y2="540" />
@@ -270,45 +273,48 @@ export function HeroSection() {
                       <line x1="800" y1="0" x2="800" y2="920" />
                     </g>
 
-                    <g fill="#4A473E" fontSize="11" fontFamily="monospace">
-                      <text x="10" y="110">-76.35°W</text>
-                      <text x="10" y="310">-76.25°W</text>
-                      <text x="10" y="510">-76.15°W</text>
-                      <text x="10" y="710">-76.05°W</text>
+                    <g fill="#4A473E" fontSize="12" fontFamily="monospace">
+                      <text x="10" y="210">-76.35°W</text>
+                      <text x="10" y="410">-76.25°W</text>
+                      <text x="10" y="610">-76.15°W</text>
                     </g>
 
+                    {/* Perímetro territorial ajustado */}
                     <path
-                      d="M 50 180 Q 250 80, 500 120 T 920 220 T 850 620 T 580 890 T 250 820 T 50 500 Z"
+                      d="M 220 180 Q 380 120, 680 180 T 780 450 T 720 780 T 400 780 T 200 600 Z"
                       fill="rgba(255,255,255,0.008)"
                       stroke="rgba(237,234,227,0.22)"
-                      strokeWidth="2.9"
+                      strokeWidth="2.5"
                     />
 
+                    {/* Red de vías / Río Cauca conectando los municipios */}
                     <path
-                      d="M 120 190 Q 250 250, 410 350 T 560 490 T 600 540"
+                      d="M 270 220 L 330 270 L 380 330 L 440 410 L 510 430 L 550 560 L 610 590 L 650 640 L 680 710"
                       fill="none"
-                      stroke="rgba(237,234,227,0.4)"
+                      stroke="rgba(237,234,227,0.35)"
                       strokeDasharray="5 5"
                       strokeWidth="1.9"
                     />
 
-                    <circle cx={cx} cy={cy} r={280} fill="none" stroke="rgba(237,234,227,0.08)" strokeDasharray="4 5" />
-                    <circle cx={cx} cy={cy} r={440} fill="none" stroke="rgba(237,234,227,0.12)" />
+                    <circle cx={cx} cy={cy} r={220} fill="none" stroke="rgba(237,234,227,0.08)" strokeDasharray="4 5" />
+                    <circle cx={cx} cy={cy} r={360} fill="none" stroke="rgba(237,234,227,0.12)" />
 
                     <g transform={`rotate(${angle}, ${cx}, ${cy})`}>
                       <path d={radarSectorPath} fill="url(#radarSweep)" />
-                      <line x1={cx} y1={cy} x2={x2} y2={y2} stroke="#FF9E1B" strokeWidth="8.8" strokeOpacity="0.8" />
+                      <line x1={cx} y1={cy} x2={x2} y2={y2} stroke="#FF9E1B" strokeWidth="9.8" strokeOpacity="0.8" />
                     </g>
 
-                    <g fill="#7A776E" fontSize="18" fontFamily="monospace">
+                    {/* Nodos secundarios */}
+                    <g fill="#7A776E" fontSize="16" fontFamily="monospace">
                       {NODOS_SECUNDARIOS.map((nodo, idx) => (
                         <g key={idx}>
                           <circle cx={nodo.cx} cy={nodo.cy} r="2.5" fill="#8E8B82" />
-                          <text x={nodo.cx + 7} y={nodo.cy + 3}>{nodo.nombre}</text>
+                          <text x={nodo.cx + 8} y={nodo.cy + 4}>{nodo.nombre}</text>
                         </g>
                       ))}
                     </g>
 
+                    {/* Nodos principales */}
                     <g fontFamily="monospace">
                       {EVENTOS_INICIALES.map((muni) => {
                         const isHighlighted = muni.id === eventoDestacado.id;
@@ -319,24 +325,24 @@ export function HeroSection() {
                               <circle
                                 cx={muni.cx}
                                 cy={muni.cy}
-                                r={15}
+                                r={14}
                                 fill="none"
                                 stroke="#FF9E1B"
-                                strokeWidth="2.6"
+                                strokeWidth="2.8"
                                 className="animate-ping origin-center opacity-75"
                               />
                             )}
                             <circle
                               cx={muni.cx}
                               cy={muni.cy}
-                              r={isHighlighted ? 9 : 7}
+                              r={isHighlighted ? 8 : 6}
                               fill={isHighlighted ? '#FF9E1B' : '#EDEAE3'}
                             />
                             <text
                               x={muni.cx + 10}
                               y={muni.cy + 4}
                               fill={isHighlighted ? '#FF9E1B' : '#EDEAE3'}
-                              fontSize={isHighlighted ? '20' : '19'}
+                              fontSize={isHighlighted ? '20' : '17'}
                               fontWeight="bold"
                             >
                               {muni.municipio}
@@ -348,12 +354,11 @@ export function HeroSection() {
                   </svg>
                 </div>
 
-                {/* LISTA DE EVENTOS */}
                 <div className="md:col-span-4 flex flex-col bg-[#0B0B0D]">
                   <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-[rgba(237,234,227,0.11)] font-mono text-[10.5px] tracking-[0.12em] text-[#9A968C]">
                     <span>REGISTRO DE EVENTOS</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[#FF9E1B]">009</span>
+                      <span className="text-[#FF9E1B]">007</span>
                       <span className="flex items-center gap-1 text-[#55C97C]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#55C97C] animate-pulse" />
                         EN VIVO
@@ -400,10 +405,9 @@ export function HeroSection() {
 
               </div>
 
-              {/* Footer Inferior */}
               <div className="px-4 py-3 border-t border-[rgba(237,234,227,0.11)] font-mono text-[11px] tracking-[0.12em] text-[#5E5B52] flex items-center gap-2.5">
                 <span className="w-2 h-2 border border-[#FF9E1B] rotate-45 inline-block" />
-                <span>SELECCIONA UN NODO PARA VER SU FICHA — 26 NODOS EN LÍNEA</span>
+                <span>SELECCIONA UN NODO PARA VER SU FICHA — 13 NODOS EN LÍNEA</span>
               </div>
             </div>
           </div>
