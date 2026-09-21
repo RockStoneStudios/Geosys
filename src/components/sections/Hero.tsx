@@ -188,10 +188,12 @@ export function HeroSection() {
             </h1>
 
             <p className="text-base text-[#9A968C] max-w-lg leading-relaxed font-normal">
-              Visión artificial entrenada en terreno, ingesta satelital masiva y analítica en tiempo real. Una sola plataforma para ver, entender y decidir sobre el territorio — desde el río Cauca hasta el Páramo del Sol.
+              Ingesta masiva de datos, visión artificial entrenada en terreno y analítica en tiempo real.
+
+Una sola plataforma para ver, entender y decidir sobre el Occidente Antioqueño: desde el río Cauca hasta el Páramo del Sol.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-2 mt-2">
               <Link
                 href="#acceso"
                 className="group inline-flex items-center gap-3 font-mono text-xs tracking-[0.14em] font-bold uppercase px-6 py-4 bg-[#FF9E1B] text-[#0A0A0B] hover:bg-[#EDEAE3] transition-all"
