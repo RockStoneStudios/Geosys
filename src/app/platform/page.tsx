@@ -262,9 +262,22 @@ export default function PlataformaPage() {
     const width = currentMount.clientWidth;
     const height = currentMount.clientHeight;
 
+    // ✅ NUEVO: Factor de escala responsive
+    // Detecta si estamos en móvil (ancho < 768px) o tablet (ancho < 1024px)
+    // y reduce el tamaño de los nodos, el radio orbital y ajusta la cámara
+    const isMobile = width < 640;
+    const isTablet = width >= 640 && width < 1024;
+    
+    // Factor de escala para nodos y elementos 3D
+    const scaleFactor = isMobile ? 0.55 : isTablet ? 0.75 : 1.0;
+    // Factor de distancia de la cámara (más lejos en desktop, más cerca en móvil)
+    const cameraDistance = isMobile ? 8.0 : isTablet ? 9.0 : 9.5;
+    // Factor del radio orbital (más compacto en móvil)
+    const radiusFactor = isMobile ? 0.7 : isTablet ? 0.85 : 1.0;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.set(0, 0, 9.5);
+    camera.position.set(0, 0, cameraDistance);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
@@ -285,7 +298,8 @@ export default function PlataformaPage() {
       } else {
         const phi = Math.acos(-1 + (2 * idx) / GRAPH_NODES.length);
         const theta = Math.sqrt(GRAPH_NODES.length * Math.PI) * phi;
-        const radius = 3.2 + (idx % 2) * 0.5;
+        // ✅ Aplicamos radiusFactor para compactar el grafo en móvil
+        const radius = (3.2 + (idx % 2) * 0.5) * radiusFactor;
         vec = new THREE.Vector3(
           radius * Math.cos(theta) * Math.sin(phi),
           radius * Math.sin(theta) * Math.sin(phi),
@@ -308,7 +322,8 @@ export default function PlataformaPage() {
 
       const mesh = new THREE.Mesh(sphereGeo, nodeMat);
       mesh.position.copy(vec);
-      mesh.scale.setScalar(node.size);
+      // ✅ Aplicamos scaleFactor al tamaño del nodo
+      mesh.scale.setScalar(node.size * scaleFactor);
       mesh.userData = node;
 
       const glowTexture = createGlowTexture(node.color);
@@ -319,7 +334,8 @@ export default function PlataformaPage() {
         opacity: 0.95
       });
       const glowSprite = new THREE.Sprite(glowMat);
-      glowSprite.scale.setScalar(node.size * 5.0);
+      // ✅ Aplicamos scaleFactor al halo también
+      glowSprite.scale.setScalar(node.size * 5.0 * scaleFactor);
       mesh.add(glowSprite);
 
       if (node.size >= 0.28) {
@@ -333,11 +349,15 @@ export default function PlataformaPage() {
 
       if (node.module !== 'CORE' && node.size >= 0.25) {
         const textSprite = createTextSprite(node.module, node.color);
-        textSprite.position.set(vec.x, vec.y + 0.55, vec.z);
+        // ✅ Aplicamos scaleFactor a la posición de la etiqueta
+        textSprite.position.set(vec.x, vec.y + 0.55 * scaleFactor, vec.z);
+        // ✅ Reducimos el tamaño de la etiqueta en móvil
+        textSprite.scale.multiplyScalar(scaleFactor);
         graphGroup.add(textSprite);
       } else if (node.module === 'CORE') {
         const textSprite = createTextSprite('CORE ONTOLÓGICO', node.color);
-        textSprite.position.set(vec.x, vec.y + 0.65, vec.z);
+        textSprite.position.set(vec.x, vec.y + 0.65 * scaleFactor, vec.z);
+        textSprite.scale.multiplyScalar(scaleFactor);
         graphGroup.add(textSprite);
       }
     });
@@ -372,7 +392,8 @@ export default function PlataformaPage() {
         });
 
         const pulseMesh = new THREE.Mesh(sphereGeo, pulseMat);
-        pulseMesh.scale.setScalar(0.09);
+        // ✅ Aplicamos scaleFactor a los pulsos
+        pulseMesh.scale.setScalar(0.09 * scaleFactor);
         
         const pulseGlowMat = new THREE.SpriteMaterial({
           map: createGlowTexture(node.color),
@@ -381,7 +402,7 @@ export default function PlataformaPage() {
           opacity: 1.0
         });
         const pulseGlow = new THREE.Sprite(pulseGlowMat);
-        pulseGlow.scale.setScalar(0.35);
+        pulseGlow.scale.setScalar(0.35 * scaleFactor);
         pulseMesh.add(pulseGlow);
 
         graphGroup.add(pulseMesh);
@@ -412,8 +433,9 @@ export default function PlataformaPage() {
       return ringMesh;
     };
 
-    const ring1 = createRing(4.2, '#00FFFF', Math.PI / 3, 0);
-    const ring2 = createRing(4.6, '#FF00FF', -Math.PI / 4, Math.PI / 6);
+    // ✅ Aplicamos radiusFactor a los anillos
+    const ring1 = createRing(4.2 * radiusFactor, '#00FFFF', Math.PI / 3, 0);
+    const ring2 = createRing(4.6 * radiusFactor, '#FF00FF', -Math.PI / 4, Math.PI / 6);
     graphGroup.add(ring1);
     graphGroup.add(ring2);
 
@@ -651,7 +673,7 @@ LIMIT 25;`;
         </div>
       </section>
 
-      {/* 2. ARQUITECTURA DE MÓDULOS (ESTILO TARJETAS DE ALERTA) */}
+      {/* 2. ARQUITECTURA DE MÓDULOS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b" style={{ borderColor: colors.border }}>
         <div className="mb-10">
           <div className="font-mono text-xs tracking-widest uppercase mb-1" style={{ color: colors.accent }}>// COMPONENTES DEL STACK</div>
