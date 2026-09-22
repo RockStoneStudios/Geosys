@@ -36,8 +36,8 @@ const EVENTOS_INICIALES: EventoTerritorial[] = [
     titulo: 'PICO DE TURBIDEZ +36 NTU',
     detalle: 'SENSOR CAUCA-4',
     subtexto: 'CONF 0.90',
-    cx: 550,
-    cy: 560
+    cx: 465,
+    cy: 550
   },
   {
     id: '3',
@@ -298,8 +298,8 @@ Una sola plataforma para ver, entender y decidir sobre el Occidente Antioqueño:
                       strokeWidth="2.9"
                     />
 
-                    <circle cx={cx} cy={cy} r={220} fill="none" stroke="rgba(237,234,227,0.08)" strokeDasharray="4 5" />
-                    <circle cx={cx} cy={cy} r={360} fill="none" stroke="rgba(237,234,227,0.12)" />
+                    <circle cx={cx} cy={cy} r={220} fill="none" stroke="rgba(237,234,227,0.14)" strokeDasharray="4 5" />
+                    <circle cx={cx} cy={cy} r={360} fill="none" stroke="rgba(237,234,227,0.27)" />
 
                     <g transform={`rotate(${angle}, ${cx}, ${cy})`}>
                       <path d={radarSectorPath} fill="url(#radarSweep)" />

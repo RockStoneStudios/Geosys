@@ -23,7 +23,7 @@ export function FieldCasesSection() {
         
         {/* Título Principal */}
         <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-none uppercase font-sans max-w-5xl">
-          EN EL TERRENO, NO EN LA DIAPOSITIVA.
+          ANALÍTICA EN TIEMPO REAL PARA EL DESARROLLO DEL TERRITORIO
         </h2>
 
         {/* Layout Bento-Grid (3 Cards) */}

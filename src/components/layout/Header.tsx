@@ -7,8 +7,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'VISOR', href: '#visor' },
-  { label: 'PLATAFORMA', href: '#platform' },
+  { label: 'VISOR', href: 'visor' },
+  { label: 'PLATAFORMA', href: 'platform' },
   { label: 'PIPELINE', href: '#pipeline' },
   { label: 'CASOS', href: '#cases' },
 ];
